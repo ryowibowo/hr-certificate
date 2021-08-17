@@ -28,7 +28,9 @@
         <!-- End Sidebar -->
         <div class="main-panel">
             <div class="content">
-                @yield('content')
+                <div class="page-inner">
+                    @yield('content')
+				</div>
             </div>
         </div>
     </div>

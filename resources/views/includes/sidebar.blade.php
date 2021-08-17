@@ -4,29 +4,18 @@
         <div class="sidebar-content">
             <ul class="nav">
                 <li class="nav-item active">
-                    <a href="index.html">
+                    <a href="{{route('dashboard')}}">
                         <i class="fas fa-home"></i>
                         <p>Dashboard</p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a data-toggle="collapse" href="#forms">
-                        <i class="fas fa-pen-square"></i>
-                        <p>Forms</p>
-                        <span class="caret"></span>
+                    <a href="{{ route('employee.index') }}">
+                        <i class="fas fa-address-card"></i>
+                        <p>Data Karyawan</p>
                     </a>
-                    <div class="collapse" id="forms">
-                        <ul class="nav nav-collapse">
-                            <li>
-                                <a href="forms/forms.html">
-                                    <span class="sub-item">Basic Form</span>
-                                </a>
-                            </li>
-
-                        </ul>
-                    </div>
                 </li>
-                <li class="nav-item">
+                {{-- <li class="nav-item">
                     <a data-toggle="collapse" href="#tables">
                         <i class="fas fa-table"></i>
                         <p>Tables</p>
@@ -46,7 +35,7 @@
                             </li>
                         </ul>
                     </div>
-                </li>
+                </li> --}}
 
             </ul>
         </div>

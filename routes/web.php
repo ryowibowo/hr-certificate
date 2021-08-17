@@ -19,3 +19,6 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/' , 'DashboardController@index')->name('dashboard');
 
+Route::resource('employee', 'EmployeeController');
+
+
