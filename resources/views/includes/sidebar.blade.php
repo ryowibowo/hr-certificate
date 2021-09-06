@@ -15,6 +15,12 @@
                         <p>Data Karyawan</p>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a href="{{ route('certificate') }}">
+                        <i class="fas fa-address-card"></i>
+                        <p>Sertifikasi</p>
+                    </a>
+                </li>
                 {{-- <li class="nav-item">
                     <a data-toggle="collapse" href="#tables">
                         <i class="fas fa-table"></i>

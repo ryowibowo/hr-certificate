@@ -21,4 +21,10 @@ Route::get('/' , 'DashboardController@index')->name('dashboard');
 
 Route::resource('employee', 'EmployeeController');
 
+Route::prefix('certificate')->group(function() {
+    Route::get('/', 'CertificateController@index')->name('certificate');
+    Route::get('create', 'CertificateController@create')->name('certificate.create');
+    Route::post('store', 'CertificateController@store')->name('certificate.store');
+});
+
 
