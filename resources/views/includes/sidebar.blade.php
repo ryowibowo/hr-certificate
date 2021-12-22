@@ -21,6 +21,13 @@
                         <p>Sertifikasi</p>
                     </a>
                 </li>
+
+                <li class="nav-item">
+                    <a href="{{ route('trainer') }}">
+                        <i class="fas fa-address-card"></i>
+                        <p>Trainer</p>
+                    </a>
+                </li>
                 {{-- <li class="nav-item">
                     <a data-toggle="collapse" href="#tables">
                         <i class="fas fa-table"></i>

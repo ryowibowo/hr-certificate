@@ -7,6 +7,10 @@ use DB;
 use Validator;
 use Session;
 use Carbon\Carbon;
+use DataTables;
+use App\Models\Employee;
+
+
 
 class EmployeeController extends Controller
 {
@@ -17,9 +21,8 @@ class EmployeeController extends Controller
      */
     public function index()
     {   
-        $data = DB::table('employee')
-                ->get();
-        return view('pages.employee.index', ['data' => $data] );
+    
+        return view('pages.employee.index');
     }
 
     /**
@@ -43,7 +46,7 @@ class EmployeeController extends Controller
         $this->validate($request, [
     		'name' => 'required',
             'nik' => 'required|integer',
-            'phone_number' => 'required|integer'
+            'phone_number' => 'required'
 	    	
     	]);
                
@@ -123,5 +126,32 @@ class EmployeeController extends Controller
         
         Session::flash('message_alert', 'Berhasil Diapus');
         return redirect()->route('employee.index'); 
+    }
+
+
+    public function datatables(Request $request)
+    {
+        if ($request->ajax()) {
+            $employee = new Employee();
+        
+            if(!empty($request->nik)){
+                $employee = $employee->where('nik', 'LIKE', "%" . $request->nik . "%");
+            }
+            if(!empty($request->nama)){
+                $employee = $employee->where('name', 'LIKE', "%" . $request->nama . "%");
+            }
+    
+            $employee = $employee->select('*')
+                ->get();
+            return Datatables::of($employee)
+                ->addIndexColumn()
+                ->addColumn('action', function($row){
+                    $actionBtn = '<a  href="'.route('employee.edit', $row->id).'" class="edit btn btn-success btn-sm">Edit</a> 
+                                  <a href="javascript:void(0)" class="delete btn btn-danger btn-sm">Delete</a>';
+                    return $actionBtn;
+                })
+                ->rawColumns(['action'])
+                ->make(true);
+        }
     }
 }

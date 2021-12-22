@@ -20,11 +20,18 @@ use Illuminate\Support\Facades\Route;
 Route::get('/' , 'DashboardController@index')->name('dashboard');
 
 Route::resource('employee', 'EmployeeController');
+Route::get('datatables', 'EmployeeController@datatables')->name('employee.datatables');
 
 Route::prefix('certificate')->group(function() {
     Route::get('/', 'CertificateController@index')->name('certificate');
     Route::get('create', 'CertificateController@create')->name('certificate.create');
     Route::post('store', 'CertificateController@store')->name('certificate.store');
+});
+
+Route::prefix('trainer')->group(function() {
+    Route::get('/', 'TrainerController@index')->name('trainer');
+    Route::get('create', 'TrainerController@create')->name('trainer.create');
+    Route::post('store', 'TrainerController@store')->name('trainer.store');
 });
 
 
