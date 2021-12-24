@@ -32,6 +32,7 @@ Route::prefix('trainer')->group(function() {
     Route::get('/', 'TrainerController@index')->name('trainer');
     Route::get('create', 'TrainerController@create')->name('trainer.create');
     Route::post('store', 'TrainerController@store')->name('trainer.store');
+    Route::post('edit/{id}', 'TrainerController@store')->name('trainer.edit');
 });
 
 

@@ -1,7 +1,8 @@
 @extends('layouts.default')
+@section('title', 'Trainer')
 @section('content')
     <div class="page-header">
-        <h4 class="page-title">Data Sertifikasi</h4>
+        <h4 class="page-title">Data Trainer</h4>
     </div>
     <div class="row">
         <div class="col-md-12">
@@ -24,6 +25,7 @@
                                     <th>No</th>
                                     <th>Nama Trainer</th>
                                     <th>Phone</th>
+                                    <th>Nama Training</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -34,21 +36,22 @@
                                         <td>{{ $no }}</td>
                                         <td>{{ $row->name }}</td>
                                         <td>{{ $row->phone_number }}</td>
+                                        <td>{{ $row->training_name }}</td>
                                         <td>
-                                            {{-- <div class="form-button-action">
+                                            <div class="form-button-action">
                                                 <button type="button" data-toggle="tooltip" title="" class="btn btn-link btn-primary" data-original-title="Edit Task">
-                                                    <a href="{{ route('employee.edit', $row->id) }}">
+                                                    <a href="{{ route('trainer.edit', $row->id) }}">
                                                         <i class="fa fa-edit"></i>
                                                     </a>
                                                 </button>
-                                                <form action="{{ route('employee.destroy', $row->id) }}" method="POST" class="d-inline">
+                                                {{-- <form action="{{ route('employee.destroy', $row->id) }}" method="POST" class="d-inline">
                                                     @csrf
                                                     @method('delete')
                                                     <button class="btn btn-link btn-danger">
                                                         <i class="fa fa-trash"></i>
                                                     </button>
-                                                </form>
-                                            </div> --}}
+                                                </form> --}}
+                                            </div>
                                         </td>
                                     </tr>
                                     <?php $no++ ;?>

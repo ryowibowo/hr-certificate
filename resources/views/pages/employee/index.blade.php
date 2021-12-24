@@ -1,4 +1,6 @@
 @extends('layouts.default')
+@section('title', 'Data Karyawan')
+
 @section('content')
     <div class="page-header">
         <h4 class="page-title">Data Karyawan</h4>

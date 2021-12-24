@@ -15,12 +15,12 @@
                         <p>Data Karyawan</p>
                     </a>
                 </li>
-                <li class="nav-item">
+                {{-- <li class="nav-item">
                     <a href="{{ route('certificate') }}">
                         <i class="fas fa-address-card"></i>
                         <p>Sertifikasi</p>
                     </a>
-                </li>
+                </li> --}}
 
                 <li class="nav-item">
                     <a href="{{ route('trainer') }}">
