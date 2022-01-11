@@ -9,6 +9,7 @@ use Session;
 use Carbon\Carbon;
 use DataTables;
 use App\Models\Employee;
+use Illuminate\Support\Facades\Cache;
 
 
 
@@ -141,8 +142,11 @@ class EmployeeController extends Controller
                 $employee = $employee->where('name', 'LIKE', "%" . $request->nama . "%");
             }
     
-            $employee = $employee->select('*')
-                ->get();
+            // $employee = $employee->select('*')
+            //     ->get();
+            $employee = Cache::remember("tes", 2 * 60, function () {
+                return Employee::all();
+            });
             return Datatables::of($employee)
                 ->addIndexColumn()
                 ->addColumn('action', function($row){
@@ -152,6 +156,32 @@ class EmployeeController extends Controller
                 })
                 ->rawColumns(['action'])
                 ->make(true);
+        }
+    }
+
+    public function withCache()
+    {   
+        DB::connection()->enableQueryLog();
+        $query = Cache::remember("user_all",  1 * 60, function () {
+            return Employee::all();
+        });
+        $queries = DB::getQueryLog();
+        print_r($queries);
+
+
+        foreach ($query as $q) {
+            echo "<li>{$q->name}</li>";
+        }
+    }
+    public function getUser()
+    {   
+        DB::connection()->enableQueryLog();
+        $query = Employee::all();
+        $queries = DB::getQueryLog();
+        print_r($queries);
+
+        foreach ($query as $q) {
+            echo "<li>{$q->name}</li>";
         }
     }
 }

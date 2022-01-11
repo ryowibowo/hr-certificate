@@ -63,4 +63,49 @@ class TrainerController extends Controller
         Session::flash('message_alert', 'Berhasil Disimpan');
         return redirect()->route('trainer'); 
     }
+
+    public function edit($id)
+    {
+        $data = DB::table('trainers')
+        ->join('trainer_details','trainer_details.trainers_id', '=', 'trainers.id')
+        ->where('trainers.id', $id)
+        ->first();
+
+        return view('pages.trainer.edit')->with([
+            'data' => $data
+        ]);
+    }
+
+    public function update(Request $request, $id)
+    {   
+        
+
+        DB::beginTransaction();
+        try {
+
+            $header = DB::table('trainers')
+            ->where('id', $id)
+            ->update([
+                    'name' => $request->name,
+                    'phone_number' => $request->phone_number,
+                    'updated_at' => Carbon::now()
+                ]
+            );
+
+            $detail = DB::table('trainer_details')
+                ->where('id', $id)
+                ->update([
+                    'training_name' => $request->training_name,
+                    'updated_at' => Carbon::now()
+                ]);
+            DB::commit();
+
+        } catch (Exception $e) {
+            DB::rollback();
+            $e->getMessage();
+        }
+
+        Session::flash('message_alert', 'Berhasil Diupdate');
+        return redirect()->route('trainer'); 
+    }
 }
